@@ -286,4 +286,245 @@ check:['重心居中了吗','背平了吗'],koujue:'跨步进位，重心居中'
 wrong:'架桥不稳、杆在手里晃、动作每杆不一样。',
 right:{杆法:'—',力度:'—',瞄准:'下巴、球杆、母球三点一线；架桥手稳固',身体:'手腕不动，靠手臂带动'},
 tips:['架杆锁定一个固定动作，永远不复用多种——这是架杆稳定的唯一途径','下巴贴杆是天然的"瞄准校验器"，离杆必歪'],
-check:['下巴贴杆了吗','架桥锁死了吗
+check:['下巴贴杆了吗','架桥锁死了吗',koujue:'下巴对杆，杆对球',vid:2},
+{t:'⑤运杆—锁点—出杆',tag:'入位',
+wrong:'最后一下突然变线；频繁改变瞄准位置。',
+right:{杆法:'—',力度:'运杆3～5次，最后一次停在母球后方确认瞄准点，然后一次送出',瞄准:'锁点后才出杆，没锁点不出杆',身体:'运杆时只有小臂动'},
+tips:['给自己定死规矩：运杆3次找感觉，第4次必出杆，杜绝无限运杆','运杆次数越多越犹豫，犹豫就是没锁点','没锁点不出杆——这句话值得贴在球台边'],
+check:['运杆几次','锁点了吗','手腕动了吗'],koujue:'没锁点，不出杆',vid:5}
+],
+equip:[
+{t:'斯诺克架杆（机械桥）锁定动作',tag:'架杆',
+wrong:'用架杆就失误，出杆变形，每杆姿势不同。',
+right:{杆法:'架杆头贴紧台面，杆槽对准进球线',力度:'轻至中，先求稳',瞄准:'固定一个架杆姿势不复用多种',身体:'手臂带动，手腕不动'},
+tips:['架杆稳定=动作锁定+手腕不动+拉满+瞄准点固定，四条缺一不可','练架杆就练一种，练到比手架还放心'],
+check:['架杆头贴死台面了吗','手腕动了吗'],koujue:'架杆只练一套，练到比手架放心',vid:2},
+{t:'手架：高架/低架/库边架',tag:'架杆',
+wrong:'母球贴库或越过障碍球时手架不稳，勉强出杆。',
+right:{杆法:'高架用于够远球，低架用于贴库',力度:'相应减力',瞄准:'手架决定出杆平面，先稳架再瞄',身体:'手指张开压死台呢'},
+tips:['顺序不能反：先稳架，再瞄，再打。手架不稳后面全废','手架离母球太远=杆头晃，标准距离约一拳半'],
+check:['手架稳吗','手架距离合适吗'],koujue:'架不稳，不打',vid:null},
+{t:'巧粉与皮头维护',tag:'架杆',
+wrong:'频繁呲杆、加塞失效。',
+right:{杆法:'皮头打磨成弧面、每次击球前涂粉',力度:'—',瞄准:'—',身体:'—'},
+tips:['涂粉动作标准化：转杆、涂三下、吹一口','皮头磨成弧面，平顶皮头天生爱呲','听到呲声立刻停，查粉、查点、查力'],
+check:['粉匀吗','皮头弧面还在吗'],koujue:'粉匀点准，呲杆自消',vid:null}
+],
+clear:[
+{t:'倒推法：从最后一颗开始',tag:'清台',
+wrong:'打着打着没球可打，走到哪算哪。',
+right:{杆法:'—',力度:'—',瞄准:'从黑8或最后一颗倒推回第一颗，反推每杆母球落点',身体:'—'},
+tips:['上台第一件事不是看哪颗好打，而是看最后一颗在哪','倒推时用手指在台面上虚点每一杆落点，形成物理记忆','不会倒推的人，清台率上限就是5颗'],
+check:['我指出最后一颗球了吗'],koujue:'从终点往回走',vid:null},
+{t:'先易后难 vs 先难后易',tag:'清台',
+wrong:'留难球到最后必死。',
+right:{杆法:'—',力度:'—',瞄准:'早期处理难球（那时母球位置选择最多）',身体:'—'},
+tips:['难球趁早打：开局母球选择最多、心理压力最小','把最难那颗标出来，前三杆内解决它'],
+check:['最难的那颗解决了吗'],koujue:'难球趁早打',vid:null},
+{t:'K球与球堆规划',tag:'清台',
+wrong:'球堆留到后期无解。',
+right:{杆法:'顺带K球',力度:'中至重',瞄准:'借位K球',身体:'—'},
+tips:['开杆前就标出球堆位置和适合的K球','K不到就放弃，不要为K球破坏走位'],
+check:['球堆位置标了吗'],koujue:'K球要顺便',vid:null},
+{t:'黑8的进路与保险',tag:'清台',
+wrong:'清到黑8才发现没路。',
+right:{杆法:'—',力度:'—',瞄准:'清台前就想好黑8打哪个袋、母球怎么走',身体:'—'},
+tips:['清台前必须回答三个问题：黑8打哪个袋、中间会不会被挡、失误了对手有没有机会','不清完不想赢——提前想好终点的人很少翻车'],
+check:['黑8的袋定了吗'],koujue:'不清完，不想赢',vid:null},
+{t:'中断后的重启思路',tag:'清台',
+wrong:'一杆断了，上台接着上一杆的想法打。',
+right:{杆法:'—',力度:'—',瞄准:'重新倒推，不要接着上一杆的想法打',身体:'—'},
+tips:['中断=重置。深呼吸一次，重新从最后一颗倒推','不要在对手打完的瞬间凭直觉出杆，给自己5秒'],
+check:['我重新倒推了吗'],koujue:'断就重算',vid:null}
+],
+safe:[
+{t:'贴库安全球',tag:'防守',
+wrong:'无法进攻时乱打一颗，留给对手机会。',
+right:{杆法:'低杆反塞把母球也贴库',力度:'轻',瞄准:'让目标球贴库或母球贴库',身体:'—'},
+tips:['防守的目标是"我不好，你也别好"，不是"随便打一杆"','贴库安全是最便宜的安全球，练熟它收益最高'],
+check:['母球贴库了吗'],koujue:'我不好，你也别好',vid:null},
+{t:'藏球（斯诺克）',tag:'防守',
+wrong:'藏曲线不藏直线，对手一绕就开。',
+right:{杆法:'中杆轻推，母球藏在球堆后',力度:'轻',瞄准:'以挡住直线为准',身体:'—'},
+tips:['只藏直线，不藏曲线——高手都会绕曲线','藏完回头看一眼：如果我是对手，这球好解吗'],
+check:['直线挡死了吗'],koujue:'藏直线，不藏曲线',vid:null},
+{t:'交换球权的安全',tag:'防守',
+wrong:'防守后对手仍有简单球。',
+right:{杆法:'—',力度:'—',瞄准:'安全的目标是让对手"能碰到但打不进"',身体:'—'},
+tips:['给他碰，不给他进——这是安全的及格线','防守质量用"对手上手率"衡量，不用"我有没有打进"'],
+check:['对手能打进而非只能碰吗'],koujue:'给他碰，不给他进',vid:null},
+{t:'防守转攻的时机',tag:'防守',
+wrong:'一味防守丢主动；半机会强攻送分。',
+right:{杆法:'—',力度:'—',瞄准:'对手留下半机会时，优先控母球而非强攻',身体:'—'},
+tips:['半机会当防守打——这是业余和高手最大的分水岭','判断标准：这一杆进了之后母球有下一颗吗？没有就当防守打'],
+check:['进了之后有下一颗吗'],koujue:'半机会当防守打',vid:null}
+],
+hard:[
+{t:'长台（>3颗球距）',tag:'难度',
+wrong:'长台命中率低，只盯袋口，加塞放大偏差。',
+right:{杆法:'中杆，不加塞',力度:'七分力，出杆直',瞄准:'盯母球上的瞄准点而非袋口；让点补偿',身体:'头不动到母球停'},
+tips:['长台三禁：禁塞、禁重、禁抬头早','让点补偿：距离越长让点越多，先补后调'],
+check:['中杆？七分力？头晚抬？'],koujue:'长台盯点不看袋',vid:4},
+{t:'薄球（<30°接触）',tag:'难度',
+wrong:'打厚或滑袋。',
+right:{杆法:'中杆偏下',力度:'轻至中',瞄准:'假想球边缘擦过，宁薄勿厚',身体:'—'},
+tips:['薄球宁薄勿厚：薄了还能靠库，厚了直接送分','想象母球要从目标球旁边"擦过去"而不是"撞上去"'],
+check:['厚度是否已减'],koujue:'薄球宁薄不厚',vid:null},
+{t:'厚球/几乎正面',tag:'难度',
+wrong:'母球与目标球几乎重叠，分离角失控。',
+right:{杆法:'高杆跟进或低杆缩回，明确分离角',力度:'中',瞄准:'中心对中心',身体:'—'},
+tips:['厚球的关键不是"打进"而是"母球去哪"——提前定好分离角','厚球定角不定点，先把角想清楚再出杆'],
+check:['分离角定了吗'],koujue:'厚球定角不定点',vid:null},
+{t:'贴库球大角度',tag:'难度',
+wrong:'见「球形诊断·大角度贴库」。',
+right:{杆法:'反塞+低杆',力度:'中',瞄准:'让点半颗球',身体:'—'},
+tips:['归类到贴库模块处理，统一用反塞+让点模板'],
+check:['让点补了吗'],koujue:'大角用反塞，让点半颗球',vid:null},
+{t:'翻袋',tag:'难度',
+wrong:'翻袋不准。',
+right:{杆法:'中杆',力度:'中力，保证吃库后能量足够',瞄准:'镜像对称点法',身体:'—'},
+tips:['用手在库边比出对称点，眼睛看着那个点打，不要凭感觉','翻袋先保"吃到库"，再求"进得准"'],
+check:['对称点比出来了吗'],koujue:'翻袋找对称',vid:null},
+{t:'跳球/过障碍',tag:'难度',
+wrong:'击球点不够低、杆尾抬不够，球跳不起来或呲杆。',
+right:{杆法:'低杆点击母球下部，杆尾抬高',力度:'短促',瞄准:'击球点越低越跳',身体:'手腕固定不甩'},
+tips:['跳球是"点"出来的不是"挑"出来的，动作要短促干脆','非必要不跳球，优先考虑解库或安全'],
+check:['点够低吗','动作短促吗'],koujue:'点低杆抬，球自起',vid:null}
+]
+};
+
+const SYM=[
+{sym:'五分点总是差一点进不去',mod:'入位与站位',cause:'脚尖未朝进球线，身体扭转致视线与站位错位',fix:'脚尖朝向进球线，反复练站位形成肌肉记忆',verify:'同一球连进10个不偏'},
+{sym:'出杆最后一下变线',mod:'入位与站位',cause:'没锁点就出杆／手腕参与',fix:'运杆3~5次，停住确认瞄准点再送；手腕不动靠手臂',verify:'空杆练，杆头始终指同一点'},
+{sym:'加塞后母球横移比预期多',mod:'加塞',cause:'让点未补偿／击球点过大',fix:'打左让右、打右让左；塞量减一档',verify:'同点打10次记偏差方向'},
+{sym:'加塞呲杆',mod:'加塞',cause:'皮头未涂粉／超过极限击球点',fix:'涂粉、减塞量、降力度',verify:'连续10次无异响'},
+{sym:'轻推进、发力不进',mod:'发力',cause:'发力时进球点改变仍用轻推瞄准位',fix:'发力前先判轨迹再调瞄准点；轻推往薄推',verify:'同球轻推/发力各10次对比'},
+{sym:'长台一发力求就偏',mod:'长台',cause:'只盯袋口、旋转累积偏差',fix:'看整体运行路径，先定方向再微调；中杆偏下',verify:'长台10颗进7'},
+{sym:'母球不是多就是少',mod:'走位',cause:'没有力度分级基准',fix:'建三分/五分/七分力距离表',verify:'指定落点误差≤半颗球'},
+{sym:'打着打着没球可打',mod:'清台',cause:'未倒推、球堆未K',fix:'开杆前倒推全程，顺带K球',verify:'清台率提升'},
+{sym:'防守后对手仍有简单球',mod:'防守',cause:'只求碰到不求控位',fix:'目标设为"能碰不能进"',verify:'对手上手率下降'}
+];
+
+const VIDS=[
+{id:1,title:'调整脚尖，解决五分点打不进的问题',core:'视线与站位不匹配，身体过度扭转导致瞄准误差',kw:'台球 站位 脚尖 进球线 五分点'},
+{id:2,title:'斯诺克架杆使用教学',core:'锁定固定动作，手腕不动，球杆拉满，瞄准点固定',kw:'斯诺克架杆 机械桥 使用教学'},
+{id:3,title:'发力与不发力的进球点差异',core:'发力时进球点会变，不能沿用轻推瞄准位',kw:'台球 发力 进球点 差异 轻推'},
+{id:4,title:'长台发力的进球点判断',core:'不盯袋口，关注整体运行路径，先定方向再微调',kw:'台球 长台 发力 进球点 判断'},
+{id:5,title:'出杆动作完整性训练',core:'拉满—出杆连贯，中途不停顿不减速',kw:'台球 出杆 动作 完整性 训练 拉满'}
+];
+
+let active='home';
+const navEl=document.getElementById('nav'),ct=document.getElementById('content'),sq=document.getElementById('search');
+
+function buildNav(q=''){
+ const f=(q||'').toLowerCase();let h='';
+ h+=`<div class="nav-item${active==='home'?' active':''}" onclick="go('home')">🏠 首页·出杆前总纲</div>`;
+ h+=`<div class="nav-item${active==='right'?' active':''}" onclick="go('right')">✅ 正确做法速览</div>`;
+ h+=`<div class="nav-item${active==='videos'?' active':''}" onclick="go('videos')">🎬 教学视频要点库</div>`;
+ h+=`<div class="nav-item${active==='symp'?' active':''}" onclick="go('symp')">🚑 症状索引</div>`;
+ const groups={};TAGS.forEach(t=>{(groups[t.g]=groups[t.g]||[]).push(t)});
+ for(const g in groups){
+  const items=groups[g].filter(t=>!f||matchTag(t,f));
+  if(!items.length)continue;
+  h+=`<div class="nav-group">${g}</div>`;
+  items.forEach(t=>{h+=`<div class="nav-item${active===t.id?' active':''}" onclick="go('${t.id}')">${t.n}<span class="cnt">${S[t.id].length}</span></div>`});
+ }
+ navEl.innerHTML=h;
+}
+function matchTag(t,f){
+ if(t.n.toLowerCase().indexOf(f)>-1)return true;
+ return S[t.id].some(s=>(s.t+s.tag+s.koujue+s.wrong).toLowerCase().indexOf(f)>-1);
+}
+function go(id){active=id;document.getElementById('sidebar').classList.remove('open');buildNav(sq.value);render(active);document.getElementById('main').scrollTop=0;}
+
+function render(id){
+ if(id==='home')return rHome();if(id==='right')return rRight();if(id==='videos')return rVids();if(id==='symp')return rSymp();rTag(id);
+}
+
+function rHome(){
+ ct.innerHTML=`<div class="bread">首页</div>
+ <h2 class="title">🎱 出杆前固化流程·总纲</h2>
+ <p class="desc">每一杆之前，按顺序走完这五步。走完再出杆，没走完不出杆。</p>
+ <div class="flow">${['读台定球','定落点倒推','分离角·塞量决策','入位五步','出杆前3秒自检'].map((s,i)=>`<div class="fstep"><span class="n">${i+1}</span><h4>${s}</h4><p>${['看清哪颗能打、哪个袋','先想母球停哪，再想怎么打','中/高/低？顺/反/无塞？','踩线→跨步→俯身→架桥→贴杆','锁点→呼吸→送杆→随挥'][i]}</p></div>`).join('')}</div>
+ <div class="mantra">
+ <div class="mitem"><h4>① 顺薄反厚 · 高顺低反</h4><p>顺塞吃库角度变大，反塞变小；高杆顺塞最大，低杆反塞最小。</p></div>
+ <div class="mitem"><h4>② 打左让右 · 打右让左</h4><p>加塞必有让点，塞量越大、距离越长，让点越多。</p></div>
+ <div class="mitem"><h4>③ 先定落点，再选杆法</h4><p>永远先想母球停在哪，再决定用什么杆法和力度。</p></div>
+ </div>
+ <div class="dia-row"><div class="dia">${DIA.stroke}</div><div class="dia">${DIA.sep}</div></div>
+ <p class="desc" style="margin-top:14px">👈 左侧选「✅ 正确做法速览」可看全部模块的正确做法总表；选「🚑 症状索引」可按现象查原因。</p>`;
+}
+
+function rRight(){
+ ct.innerHTML=`<div class="bread">✅ 正确做法速览</div>
+ <h2 class="title">✅ 正确做法速览（全模块总表）</h2>
+ <p class="desc">把十个模块的"正确做法"集中在此，练球前花3分钟过一遍。点击模块名可跳转到详细场景。</p>
+ ${TAGS.map(t=>`<h3 style="color:var(--gold);margin:18px 0 8px;font-size:16px;cursor:pointer" onclick="go('${t.id}')">${t.n} →</h3>
+ <table class="rtable"><thead><tr><th style="width:28%">场景</th><th style="width:36%">✅ 正确做法</th><th style="width:36%">💡 实用技巧</th></tr></thead><tbody>
+ ${S[t.id].map(s=>`<tr><td>${s.t}</td><td class="badge-ok">${Object.entries(s.right).map(([k,v])=>v&&v!=='—'?`<b>${k}：</b>${v}`:'').filter(Boolean).join('｜')}</td><td>${s.tips.slice(0,2).join('；')}</td></tr>`).join('')}
+ </tbody></table>`).join('')}`;
+}
+
+function rTag(id){
+ const tag=TAGS.find(t=>t.id===id);if(!tag)return;
+ const list=S[id],dk={shape:'sep',cueball:'bank',method:'cue',power:'stroke',walk:'sep',pos:'stroke',equip:'aim',clear:'run',safe:'bank',hard:'aim'}[id]||'aim';
+ ct.innerHTML=`<div class="bread"><span>${tag.g}</span> / ${tag.n}</div>
+ <h2 class="title">${tag.n}</h2><p class="desc">共 ${list.length} 个子场景。每张卡片按 ❌常见错误 → ✅正确做法 → 💡实用技巧 排列，点击标题展开。</p>
+ <div class="dia-row"><div class="dia">${DIA[dk]}</div></div>
+ ${list.map((s,i)=>card(s,i)).join('')}`;
+ const first=document.querySelector('.scene');if(first)first.classList.add('open');
+}
+
+function card(s){
+ const v=s.vid?VIDS.find(x=>x.id===s.vid):null;
+ const kw=`中式八球 ${s.tag} ${s.t}`;
+ const rights=Object.entries(s.right).map(([k,val])=>val&&val!=='—'?`<div class="g-item"><div class="g-label">${k}</div><div class="g-val">${val}</div></div>`:'').join('');
+ return `<div class="scene" data-k="${(s.t+s.tag+s.wrong+s.koujue+s.tips.join(' ')+JSON.stringify(s.right)).toLowerCase()}">
+ <div class="scene-head" onclick="this.parentElement.classList.toggle('open')"><h3>${s.t} <span class="tag">${s.tag}</span></h3><span class="arrow">▼</span></div>
+ <div class="scene-body">
+  <div class="block block-wrong"><div class="block-title">❌ 常见错误</div><div class="g-val">${s.wrong}</div></div>
+  <div class="block block-right"><div class="block-title">✅ 正确做法</div><div class="grid">${rights}</div></div>
+  <div class="block block-tip"><div class="block-title">💡 实用技巧</div><ul class="tips-list">${s.tips.map(t=>`<li>${t}</li>`).join('')}${v?`<li style="color:var(--gold);margin-top:4px">🎬 对应教学：${v.title}</li>`:''}</ul>
+   <div class="checklist">${s.check.map(c=>`<span class="check">☑ ${c}</span>`).join('')}</div>
+  </div>
+  <div class="koujue">💡 ${s.koujue}</div>
+  <div class="vrow">
+   <a class="vbtn dy" href="https://www.douyin.com/search/${encodeURIComponent(kw)}" target="_blank">▶ 抖音搜</a>
+   <a class="vbtn bz" href="https://search.bilibili.com/all?keyword=${encodeURIComponent(kw)}" target="_blank">▶ B站搜</a>
+  </div>
+  <div class="kw">检索词 <code>${kw}</code></div>
+ </div></div>`;
+}
+
+function rVids(){
+ ct.innerHTML=`<div class="bread"><span>🎬 教学视频要点库</span></div>
+ <h2 class="title">🎬 教学视频要点库</h2>
+ <p class="desc">5 条核心教学，已拆解进对应场景的「💡 实用技巧」中；此处集中速览，点卡片跳转对应标签。</p>
+ <div class="vlib">${VIDS.map(v=>`<div class="vcard" onclick="go('${v.id===1||v.id===2||v.id===5?'pos':v.id===3?'power':'hard'}')">
+  <h3>视频${v.id}：${v.title}</h3>
+  <div class="core">❗ ${v.core}</div>
+  <div class="vrow"><a class="vbtn dy" href="https://www.douyin.com/search/${encodeURIComponent(v.kw)}" target="_blank" onclick="event.stopPropagation()">▶ 抖音</a>
+  <a class="vbtn bz" href="https://search.bilibili.com/all?keyword=${encodeURIComponent(v.kw)}" target="_blank" onclick="event.stopPropagation()">▶ B站</a></div>
+  <div class="goto">→ 已嵌入标签：${v.id===1||v.id===2||v.id===5?'入位五步':v.id===3?'发力与让点':'难度球技巧'}</div>
+ </div>`).join('')}</div>`;
+}
+
+function rSymp(){
+ ct.innerHTML=`<div class="bread"><span>症状索引</span></div>
+ <h2 class="title">🚑 症状索引·急诊表</h2>
+ <p class="desc">先判断是「决策错」还是「执行错」，再对症修正。</p>
+ <table class="stbl"><thead><tr><th>出现现象</th><th>模块</th><th>根本原因</th><th>✅ 修正动作</th><th>验证方法</th></tr></thead><tbody>
+ ${SYM.map(s=>`<tr><td>${s.sym}</td><td>${s.mod}</td><td>${s.cause}</td><td class="badge-ok">${s.fix}</td><td>${s.verify}</td></tr>`).join('')}
+ </tbody></table>
+ <div class="mantra"><div class="mitem"><h4>决策错</h4><p>瞄错、分离角算错、顺序选错 → 查「清台倒推」「分离角」「难度球」</p></div>
+ <div class="mitem"><h4>执行错</h4><p>入位歪、出杆飘、让点没补 → 查「入位五步」「加塞让点」「发力」</p></div></div>`;
+}
+
+sq.addEventListener('input',()=>{buildNav(sq.value);if(active!=='home')render(active);hl()});
+sq.addEventListener('keydown',e=>{if(e.key==='Enter'){buildNav(sq.value);hl()}});
+function hl(){const q=sq.value.toLowerCase();document.querySelectorAll('.scene,.vcard').forEach(el=>{el.classList.toggle('highlight',q&&(el.dataset.k||'').toLowerCase().indexOf(q)>-1)})}
+
+buildNav();render('home');
+</script>
+</body>
+</html>
