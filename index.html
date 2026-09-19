@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中式八球速查手册 · 正确做法版</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b1e14;--side:#0d2418;--card:#122e1e;--card-hover:#173a26;--gold:#d4af37;--gold-bg:rgba(212,175,55,.1);--green:#2ecc71;--green-bg:rgba(46,204,113,.08);--red:#e74c3c;--red-bg:rgba(231,76,60,.08);--text:#eaf0ea;--muted:#7a9a86;--border:#1a4a2e;--accent:#1e5a34}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);display:flex;height:100vh;overflow:hidden;font-size:14px;line-height:1.6}
+#sidebar{width:250px;min-width:250px;background:linear-gradient(180deg,#0d2418,#091a10);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100}
+.side-head{padding:16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.logo{width:38px;height:38px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fff,#bbb);color:#111;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px}
+.side-head h1{font-size:14px;color:var(--gold);line-height:1.4}
+#search{margin:10px 12px;padding:8px 14px;border-radius:18px;border:1px solid var(--border);background:#0a1a12;color:var(--text);font-size:13px;outline:none;width:calc(100% - 24px)}
+#search:focus{border-color:var(--gold)}
+#nav{flex:1;overflow-y:auto;padding:6px 0}
+.nav-group{padding:6px 14px 4px;font-size:11px;color:var(--muted);letter-spacing:1px}
+.nav-item{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;cursor:pointer;font-size:13.5px;color:var(--text);transition:.15s;border-left:3px solid transparent}
+.nav-item:hover{background:var(--accent)}
+.nav-item.active{background:var(--accent);border-left-color:var(--gold);color:var(--gold)}
+.nav-item .cnt{background:var(--border);color:var(--muted);font-size:11px;padding:1px 7px;border-radius:10px}
+.side-foot{padding:10px 14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted);line-height:1.7}
+#main{flex:1;overflow-y:auto;padding:28px 32px}
+#content{max-width:920px;margin:0 auto}
+.bread{font-size:12px;color:var(--muted);margin-bottom:10px}
+.bread span{color:var(--gold)}
+h2.title{font-size:22px;color:var(--gold);margin-bottom:6px}
+.desc{color:var(--muted);font-size:14px;margin-bottom:20px;line-height:1.7}
+.dia-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.dia{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px;flex:1;min-width:240px;text-align:center}
+.dia svg{max-width:100%;height:auto}
+.dia p{font-size:12px;color:var(--muted);margin-top:8px}
+.flow{display:flex;gap:0;margin:18px 0;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.fstep{flex:1;min-width:130px;background:var(--card);padding:14px 10px;text-align:center}
+.fstep+.fstep{border-left:1px solid var(--border)}
+.fstep .n{display:inline-block;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#111;font-weight:900;font-size:13px;line-height:26px;margin-bottom:6px}
+.fstep h4{font-size:13px;color:var(--gold);margin-bottom:3px}
+.fstep p{font-size:12px;color:var(--muted);line-height:1.5}
+.mantra{display:flex;gap:12px;flex-wrap:wrap;margin:18px 0}
+.mitem{flex:1;min-width:190px;background:var(--card);border:1px solid var(--gold);border-radius:10px;padding:13px 15px}
+.mitem h4{color:var(--gold);font-size:13.5px;margin-bottom:3px}
+.mitem p{font-size:13px;color:var(--muted)}
+.scene{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden;transition:.15s}
+.scene:hover{border-color:#2a6a42}
+.scene-head{padding:14px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.scene-head h3{font-size:15.5px;color:var(--text);display:flex;align-items:center;gap:8px}
+.scene-head .tag{font-size:11px;background:var(--border);color:var(--muted);padding:2px 9px;border-radius:8px;font-weight:400}
+.scene-head .arrow{color:var(--muted);font-size:12px;transition:.2s}
+.scene.open .arrow{transform:rotate(180deg)}
+.scene-body{padding:0 18px 18px;display:none}
+.scene.open .scene-body{display:block}
+.block{border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.block-wrong{background:var(--red-bg);border-left:3px solid var(--red)}
+.block-right{background:var(--green-bg);border-left:3px solid var(--green)}
+.block-tip{background:var(--gold-bg);border-left:3px solid var(--gold)}
+.block-title{font-size:13px;font-weight:700;margin-bottom:8px}
+.block-wrong .block-title{color:var(--red)}
+.block-right .block-title{color:var(--green)}
+.block-tip .block-title{color:var(--gold)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.g-item{background:rgba(0,0,0,.18);border-radius:8px;padding:9px 11px}
+.g-label{font-size:11px;color:var(--muted);letter-spacing:1px;margin-bottom:2px}
+.g-val{font-size:13.5px;line-height:1.6}
+.tips-list{list-style:none;padding:0}
+.tips-list li{position:relative;padding-left:16px;font-size:13.5px;line-height:1.7;margin-bottom:2px}
+.tips-list li::before{content:"\25B8";position:absolute;left:0;color:var(--gold)}
+.checklist{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.check{font-size:12px;background:rgba(46,204,113,.12);color:var(--green);padding:3px 10px;border-radius:12px;border:1px solid rgba(46,204,113,.25)}
+.koujue{text-align:center;padding:11px;background:rgba(212,175,55,.08);border:1px dashed var(--gold);border-radius:8px;font-size:14.5px;color:var(--gold);font-weight:700;letter-spacing:1px;margin-top:10px}
+.vrow{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.vbtn{display:inline-flex;align-items:center;gap:5px;padding:7px 14px;border-radius:20px;font-size:12.5px;text-decoration:none;color:#fff;transition:.15s}
+.vbtn.dy{background:linear-gradient(135deg,#222,#444);border:1px solid #666}
+.vbtn.bz{background:linear-gradient(135deg,#00a1d6,#0078a8)}
+.vbtn:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.kw{margin-top:8px;font-size:12px;color:var(--muted)}
+.kw code{background:var(--border);padding:2px 8px;border-radius:4px;margin-right:6px;font-family:inherit;color:var(--gold)}
+.rtable{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0}
+.rtable th{background:var(--accent);color:var(--gold);padding:10px;text-align:left}
+.rtable td{padding:10px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.6}
+.badge-ok{color:var(--green);font-weight:700}
+.stbl{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0}
+.stbl th{background:var(--accent);color:var(--gold);padding:10px;text-align:left}
+.stbl td{padding:10px;border-bottom:1px solid var(--border);line-height:1.6;vertical-align:top}
+.vlib{display:grid;gap:12px}
+.vcard{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;cursor:pointer;transition:.15s}
+.vcard:hover{border-color:var(--gold);background:var(--card-hover)}
+.vcard h3{font-size:15px;color:var(--gold);margin-bottom:6px}
+.vcard .core{color:var(--muted);font-size:13px;margin-bottom:8px}
+.vcard .goto{font-size:12px;color:var(--gold)}
+.highlight{box-shadow:0 0 0 2px var(--gold)!important;border-color:var(--gold)!important}
+#menuBtn{display:none;position:fixed;top:10px;left:10px;z-index:200;background:var(--gold);color:#111;border:none;border-radius:8px;padding:8px 12px;font-size:16px;cursor:pointer}
+@media(max-width:820px){
+ #sidebar{position:fixed;left:-270px;top:0;bottom:0;width:270px;transition:.25s;box-shadow:4px 0 24px rgba(0,0,0,.6)}
+ #sidebar.open{left:0}
+ #menuBtn{display:block}
+ #main{padding:56px 14px 20px}
+ .grid{grid-template-columns:1fr}
+ .fstep{min-width:100%;border-left:1px solid var(--border)!important}
+}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+</style>
+</head>
+<body>
+<button id="menuBtn" onclick="document.getElementById('sidebar').classList.toggle('open')">&#9776;</button>
+<aside id="sidebar">
+ <div class="side-head"><div class="logo">8</div><h1>中式八球<br>速查手册</h1></div>
+ <input id="search" placeholder="搜索：加塞 / 贴库 / 让点 ...">
+ <nav id="nav"></nav>
+ <div class="side-foot">v4.1 完整修正版 · 离线可用</div>
+</aside>
+<main id="main"><div id="content"></div></main>
+<script>
+const DIA={
+aim:'<svg viewBox="0 0 260 130" width="240"><line x1="20" y1="105" x2="210" y2="28" stroke="#d4af37" stroke-width="1.5" stroke-dasharray="4"/><circle cx="150" cy="54" r="18" fill="none" stroke="#7a9a86"/><circle cx="192" cy="38" r="13" fill="#eaf0ea"/><circle cx="58" cy="84" r="11" fill="#c0392b"/><line x1="58" y1="84" x2="150" y2="54" stroke="#2ecc71" stroke-width="1.5"/><text x="150" y="58" text-anchor="middle" font-size="9" fill="#7a9a86">假想球</text><text x="208" y="36" font-size="10" fill="#d4af37">袋口</text></svg><p>假想球瞄准：母球心-假想球心-目标球心三点一线</p>',
+sep:'<svg viewBox="0 0 260 140" width="240"><circle cx="130" cy="78" r="14" fill="#eaf0ea"/><circle cx="180" cy="78" r="14" fill="#c0392b"/><line x1="130" y1="78" x2="245" y2="78" stroke="#7a9a86" stroke-dasharray="3"/><line x1="180" y1="78" x2="230" y2="38" stroke="#2ecc71" stroke-width="1.5"/><line x1="180" y1="78" x2="222" y2="112" stroke="#3498db" stroke-width="1.5"/><text x="232" y="38" font-size="10" fill="#2ecc71">目标球</text><text x="224" y="124" font-size="10" fill="#3498db">母球</text></svg><p>分离角：中杆约90度 高杆小于90度跟进 低杆大于90度缩回</p>',
+cue:'<svg viewBox="0 0 140 140" width="120"><circle cx="70" cy="70" r="50" fill="none" stroke="#7a9a86"/><circle cx="70" cy="70" r="16" fill="#eaf0ea"/><circle cx="70" cy="42" r="7" fill="#2980b9"/><circle cx="70" cy="98" r="7" fill="#8e44ad"/><circle cx="42" cy="70" r="7" fill="#e74c3c"/><circle cx="98" cy="70" r="7" fill="#27ae60"/><text x="70" y="34" text-anchor="middle" font-size="9" fill="#2980b9">高</text><text x="70" y="118" text-anchor="middle" font-size="9" fill="#8e44ad">低</text><text x="30" y="73" text-anchor="middle" font-size="9" fill="#e74c3c">左</text><text x="110" y="73" text-anchor="middle" font-size="9" fill="#27ae60">右</text></svg><p>击球点：上下控进退 左右控横移与让点</p>',
+bank:'<svg viewBox="0 0 260 125" width="240"><rect x="10" y="10" width="240" height="105" rx="8" fill="none" stroke="#1a4a2e" stroke-width="2"/><circle cx="80" cy="68" r="12" fill="#eaf0ea"/><line x1="80" y1="68" x2="170" y2="18" stroke="#d4af37" stroke-width="1.5"/><line x1="170" y1="18" x2="232" y2="52" stroke="#2ecc71" stroke-width="1.5"/><text x="120" y="40" font-size="10" fill="#d4af37">顺塞角变大</text><text x="176" y="70" font-size="10" fill="#2ecc71">反塞角变小</text></svg><p>顺塞吃库角度变大 反塞变小 高顺低反</p>',
+run:'<svg viewBox="0 0 260 145" width="240"><circle cx="220" cy="24" r="11" fill="#d4af37"/><circle cx="180" cy="48" r="11" fill="#fff"/><circle cx="140" cy="68" r="11" fill="#fff"/><circle cx="100" cy="90" r="11" fill="#fff"/><circle cx="60" cy="114" r="11" fill="#c0392b"/><line x1="60" y1="114" x2="220" y2="24" stroke="#2ecc71" stroke-width="1.5"/><text x="10" y="138" font-size="10" fill="#7a9a86">从最后一颗倒推回母球当前位置</text></svg><p>清台倒推 袋口到末球到首球到母球落点</p>',
+stroke:'<svg viewBox="0 0 260 110" width="240"><line x1="18" y1="55" x2="245" y2="55" stroke="#7a9a86"/><rect x="28" y="44" width="62" height="22" rx="5" fill="#1a4a2e" stroke="#d4af37"/><text x="59" y="59" text-anchor="middle" font-size="10" fill="#d4af37">后摆拉满</text><rect x="100" y="44" width="52" height="22" rx="5" fill="#1a4a2e" stroke="#2ecc71"/><text x="126" y="59" text-anchor="middle" font-size="10" fill="#2ecc71">穿透</text><rect x="162" y="44" width="62" height="22" rx="5" fill="#1a4a2e" stroke="#3498db"/><text x="193" y="59" text-anchor="middle" font-size="10" fill="#3498db">随挥完整</text><polygon points="245,50 256,55 245,60" fill="#7a9a86"/></svg><p>拉满到穿透到随挥 中途不停顿不减速</p>'
+};
+
+const TAGS=[
+{id:'shape',g:'球形诊断',n:'常见球形'},
+{id:'cueball',g:'球形诊断',n:'贴库球专项'},
+{id:'method',g:'杆法速查',n:'杆法速查'},
+{id:'power',g:'发力与让点',n:'发力与让点'},
+{id:'walk',g:'走位控制',n:'走位落点'},
+{id:'pos',g:'入位五步',n:'入位五步'},
+{id:'equip',g:'器械架杆',n:'器械与架杆'},
+{id:'clear',g:'清台倒推',n:'清台思路'},
+{id:'safe',g:'防守安全',n:'防守思路'},
+{id:'hard',g:'难度球',n:'难度球技巧'}
+];
+
+const S={
+shape:[
+{t:'贴库球（目标球靠库）',tag:'球形',wrong:'沿用平常厚度打必偏厚 加高杆导致目标球跳离库边 重击放大库边弹性误差。',right:{杆法:'中杆偏下或纯中杆 禁止加高杆',力度:'三分力到五分力 宁轻勿重',瞄准:'比正常厚度再偏薄约四分之一个球 以假想球心对准进球线 注意库边反弹使进球线外移',身体:'视线沿进球线 脚尖朝线'},tips:['先确定球的大致运行方向 再微调瞄准点','轻推时往薄一点的方向推 稳定性更高','贴库球一律先保进球 再谈走位','用同一颗贴库球连打10次 只调厚度不调力'],check:['进球线外移已补偿','厚度已减薄','力度不过五分'],koujue:'贴库不打高 偏薄一厘毛 力轻线才准',vid:3},
+{t:'双贴库（母球目标球同时贴库）',tag:'球形',wrong:'同时想解决两个问题 结果都处理不好 架杆悬空出杆变形。',right:{杆法:'同侧顺塞帮母球沿库边走 需横移则反塞加低杆',力度:'三分力为主 先保证打进',瞄准:'先解决目标球进球线外移 再考虑母球出路 两难时优先保进球',身体:'架杆头贴死台面 俯身更低'},tips:['两难统一原则 先打进再谈走位','母球贴库宁可牺牲杆法也要保证出杆平面稳定','打完复盘 这杆是决策错还是执行错'],check:['架杆贴死台面','只解决一个问题'],koujue:'双贴先保进 再谈母球命',vid:null},
+{t:'大角度贴库',tag:'球形',wrong:'用中杆硬打 滑袋或打厚 不加让点补偿。',right:{杆法:'反塞压缩吃库角 配合低杆',力度:'中力 出杆要穿透不可点触',瞄准:'假想球法加让点 击球点向袋口侧微移半颗球',身体:'后脚踩死进球线延长线'},tips:['大角度默认需要让点 先补半颗球再微调','反塞量控制在半个皮头以内 过量必跑多','这类球失误率高 允许自己打安全'],check:['让点已补','反塞不过半皮头'],koujue:'大角用反塞 让点半颗球',vid:null},
+{t:'小角度贴库',tag:'球形',wrong:'看似简单却打厚 母球跟着目标球滚 二次碰撞。',right:{杆法:'中杆或轻微顺塞 避免低杆过度',力度:'轻推三分力 打完即停',瞄准:'正常厚度 视线沿进球线 站位脚踩线',身体:'重心居中不前倾'},tips:['简单球唯一要防的是随意 流程照走一遍','打完看母球是否二次碰目标球 是则减薄或减低杆'],check:['脚尖朝进球线','走完五步才出杆'],koujue:'小角轻推停 站线看线准',vid:null},
+{t:'挂角球（袋口附近）',tag:'球形',wrong:'紧张手抖 发力过猛 盯袋口看。',right:{杆法:'中杆定球不加塞',力度:'极轻 送进去而非打进去',瞄准:'只看进球点不看袋口',身体:'呼吸放慢 出杆前呼气一半'},tips:['挂角球是送不是打 想象把球放到袋口','盯母球上的击球点 不盯袋口','心理 这球已进 我只负责送'],check:['眼最后落在母球击球点'],koujue:'挂角只送不打',vid:null},
+{t:'障碍球或斯诺克',tag:'球形',wrong:'强行解却留机会 解库选错对称点。',right:{杆法:'架杆加反塞解库 无解则做贴库安全',力度:'解库中力 保证碰到目标球',瞄准:'镜像法 库边对称点当虚拟目标',身体:'架杆锁定一套动作'},tips:['解库前用手比划对称路径再架杆','无解时降级为碰到加贴库 不冒险强攻'],check:['对称点比划过','接受只求碰到'],koujue:'能解不解亏 不能解就贴',vid:null}
+],
+cueball:[
+{t:'母球贴库 小角度出杆',tag:'贴库',wrong:'硬够导致杆头蹭库 出杆面倾斜。',right:{杆法:'架杆或俯身更低 顺塞让母球沿库滑行',力度:'轻至中',瞄准:'先定进球点再妥协杆法',身体:'架桥手稳固 手腕不动'},tips:['遇贴库第一反应是换架杆 不是将就手架','架杆只用一套固定动作 练到闭眼能做'],check:['出杆平面与台面平行'],koujue:'贴库先架稳 架稳再谈准',vid:2},
+{t:'母球贴库 大角度强行出杆',tag:'贴库',wrong:'指望直打横移 母球原地不动或乱跑。',right:{杆法:'反塞加低杆 借库反弹产生横移',力度:'中力 保证吃库能量',瞄准:'预留让点 击球点向袋口侧移',身体:'后脚压线 轴正'},tips:['贴库横移几乎只能靠塞加库 别指望纯杆法','先练无反塞建立基准 再加塞对比偏差'],check:['先练了无塞基准'],koujue:'反塞借库走 先立无塞标',vid:null}
+],
+method:[
+{t:'中杆定球（定点）',tag:'杆法',wrong:'以为打正中 实际皮头偏高偏低 分离角不稳。',right:{杆法:'击球点正中 皮头略低于中心防跳球',力度:'中等 出杆保持水平',效果:'分离角接近90度',身体:'杆尾高度全程不变'},tips:['用直角分离检验真中杆','中杆没定型前不要加塞'],check:['分离角接近90度'],koujue:'正中定 九十度',vid:null},
+{t:'高杆跟进',tag:'杆法',wrong:'轻推高杆效果微弱 出杆不送跟进不足。',right:{杆法:'击球点上三分之一 出杆向前送随挥长',力度:'中力以上才明显',效果:'分离角小于90度 跟进',身体:'随挥结束杆头仍指目标方向'},tips:['高杆精髓在送不在点 随挥长度决定跟进距离','跟不到位先看随挥有没有断 别急加力'],check:['随挥完整','杆头结束指向正确'],koujue:'高跟角变小 随挥定距离',vid:5},
+{t:'低杆缩回',tag:'杆法',wrong:'轻拉不出缩 杆尾抬太多跳球或呲杆。',right:{杆法:'击球点下三分之一 杆尾略抬 出杆向下前方穿透',力度:'中力加拉满 轻拉无缩',效果:'分离角大于90度',身体:'手腕不动靠手臂带动'},tips:['低杆三要素 拉满 穿透 腕不动 缺一不可','先中短距离练缩回 能缩一颗再加距离'],check:['球杆拉满','手腕没参与'],koujue:'低缩角变大 拉满才回得动',vid:5},
+{t:'左塞右塞',tag:'杆法',wrong:'一上塞就跑偏 塞量超过一个皮头直径。',right:{杆法:'皮头偏离中心不超一个皮头 先练中杆再加塞',力度:'中力 重击偏移剧增',效果:'打左让右 打右让左',身体:'出杆直线不因加塞斜着送'},tips:['加塞前问自己 真需要塞吗 八成不需要','新加塞先减半量 打进再加回','记偏差方向 同侧跑多是让点不足 异侧是塞量过大'],check:['塞量不超一皮头','先打无塞基准'],koujue:'打左让右 打右让左',vid:null},
+{t:'高低加塞组合',tag:'杆法',wrong:'一次改两个变量 错了不知错在哪。',right:{杆法:'先定进退高低 再定横移左右',力度:'中力',效果:'叠加效应 必须单练后再组合',身体:'无'},tips:['组合拆解练 分天各20次再合','出错退回单变量定位问题'],check:['这杆只改一个变量吗'],koujue:'一次只改一个变量',vid:null},
+{t:'顺塞反塞吃库',tag:'杆法',wrong:'吃库后角度不对 跑多跑少不知原因。',right:{杆法:'顺塞塞向与吃库后滚动方向一致角变大 反塞相反角变小',力度:'顺塞可稍轻 反塞需中力保穿透',效果:'高顺角最大 低反角最小',身体:'无'},tips:['记顺薄反厚 高顺低反','先中杆无塞打基准吃库角 再顺反各5次看差值','差值就是你的个人塞量表'],check:['先打无塞基准角'],koujue:'顺薄反厚 高顺低反',vid:null},
+{t:'防打滑（呲杆）',tag:'杆法',wrong:'粉涂不匀 击球点过界 加塞还猛发力。',right:{杆法:'皮头打磨起绒 巧粉涂匀 击球点不超极限点',力度:'加塞宁可轻一分',身体:'出杆瞬间不抖'},tips:['每次击球前转杆涂粉 养成肌肉记忆','听到呲声立刻停 查粉查点查力','皮头磨弧面 平顶皮头爱呲'],check:['粉匀 点没界 力没大'],koujue:'粉要匀 点不过界 力减一分',vid:null}
+],
+power:[
+{t:'发力击球与轻推进球点差异',tag:'发力',wrong:'轻推能进 一发力就打厚打偏 仍用轻推瞄准位。',right:{杆法:'发力保持中杆或微低杆 避免加塞叠加偏移',力度:'分级 先五分力建基准',瞄准:'发力前预判轨迹并调整瞄准点 轻推可往薄推',身体:'发力靠手臂加速不是靠肩顶'},tips:['同球轻推10次加发力10次 记偏差方向和量','发力不等于用力 等于加速度完整','新手先从五分力起步 不准不加力'],check:['用了五分力基准','瞄准点按发力调整'],koujue:'发力先判轨迹 再调瞄准点',vid:3},
+{t:'长台发力的进球点判断',tag:'发力',wrong:'只盯袋口 旋转累积偏差 中途减速。',right:{杆法:'中杆偏下减少旋转累积偏差',力度:'七分力 出杆要直要穿透',瞄准:'关注整体路径 先定方向再微调',身体:'头不动直到母球停止'},tips:['看路不看袋 盯母球击球点 余光感知路径','长台一律减塞 宁用纯中杆','头抬起过早是失准首因 练数两秒再抬头'],check:['头晚抬','用中杆偏下'],koujue:'长台看路不看袋',vid:4},
+{t:'力度分级与落点对应',tag:'发力',wrong:'同杆法母球每次停的位置不一样 全靠感觉。',right:{杆法:'固定中杆只变力度',力度:'三分约1颗球距 五分约2颗 七分约3颗 全力约全台',瞄准:'同球同袋重复',身体:'无'},tips:['建力度距离表写备忘录 练球前看','记距离不记感觉 感觉会变数字不会','练球前3分钟校准力度'],check:['今天校准力度了吗'],koujue:'记距离 不记感觉',vid:null},
+{t:'出杆完整性（拉满出杆）',tag:'发力',wrong:'球没劲 母球不到位 加塞失效 中途停顿减速。',right:{杆法:'出杆前球杆必须拉满 动作完整不停不减速',力度:'拉满后自然释放不用蛮力',瞄准:'固定瞄准点不频繁改变',身体:'手腕不动手臂带动'},tips:['空杆练习 台呢画点 练拉满送出随挥 杆头指同一点','节奏 1-2-3送 前三次找感觉第四次必出杆','出杆不完整九成是怕打不到 不是没力气'],check:['拉满','没停','腕没动'],koujue:'拉满出杆 不停不减',vid:5}
+],
+walk:[
+{t:'分离角三档',tag:'走位',wrong:'母球走向与预期不符 反复换杆法。',right:{杆法:'中杆约90 高杆小于90 低杆大于90',力度:'中力标定',瞄准:'先画目标球切线再选杆法',身体:'无'},tips:['先想母球停哪 再想要几度分离角','用手指比划分离角再打 比空想准','先练90度中杆 这是走位原点'],check:['画出分离角了吗'],koujue:'中高定角 角定杆法',vid:null},
+{t:'三分五分七分力落点标定',tag:'走位',wrong:'母球不是多就是少。',right:{杆法:'固定中杆',力度:'三种力各打10次记录停止点',瞄准:'同一球同一袋',身体:'无'},tips:['误差半颗球内算合格 超了重做力度表','走位不准八成是力度不是杆法'],check:['误差不超半颗球'],koujue:'记距离 不记感觉',vid:null},
+{t:'45度经中央穿越',tag:'走位',wrong:'母球穿过中央后失控 吃库角算错。',right:{杆法:'用顺塞修正吃库角',力度:'中力',瞄准:'以中央为中继点规划两段路径',身体:'无'},tips:['把中央当中转站 路径拆两段分别算','中央失控先查是不是用了反塞还减力'],check:['路径拆成两段'],koujue:'中央中转站 分段算路径',vid:null},
+{t:'K球炸散时机',tag:'走位',wrong:'球堆留到后期无球可打 专门花一颗去K。',right:{杆法:'用可打的时机顺带K 优先保证下一颗',力度:'中至重',瞄准:'以母球碰撞点反推',身体:'无'},tips:['K球顺便不是专门 K不到就放弃别破坏走位','开杆前标出球堆在哪哪颗适合K'],check:['这杆K球影响下一颗吗'],koujue:'K球要顺便 不要专门',vid:null},
+{t:'贴库母球救位',tag:'走位',wrong:'母球贴库后还想精细走位 越救越糟。',right:{杆法:'优先回到台面中央开阔区',力度:'轻至中',瞄准:'安全第一走位第二',身体:'无'},tips:['贴库唯一目标是回中央 回中央就拿到主动','接受这杆不进攻 是涨球最快习惯之一'],check:['母球在中央开阔区'],koujue:'先回中央 再谈进攻',vid:null}
+],
+pos:[
+{t:'入位①面向进球线定轴',tag:'入位',wrong:'站歪 身体过度扭转 越打越扭 五分点总差一点。',right:{杆法:'无',力度:'无',瞄准:'站母球后方沿进球线看袋口 身体正对这条线',身体:'脚尖朝进球线 不扭转'},tips:['脚尖朝线则视线自然对准进球点 是解决差一点最便宜办法','站位前先在母球后站直看一遍线再俯身','拍侧面视频自查 脚尖膝盖髋肩平行进球线'],check:['脚尖朝线','身体没扭'],koujue:'先看线 再站人',vid:1},
+{t:'入位②后脚踩线定重心轴',tag:'入位',wrong:'出杆左右晃 轴不正。',right:{杆法:'无',力度:'无',瞄准:'后脚脚尖指向进球线 落在母球正后延长线',身体:'重心轴与进球线重合'},tips:['后脚是动力链地基 地基歪上面全歪','踩线后原地晃两下 不稳重站'],check:['后脚踩线','晃两下稳'],koujue:'后脚压线 轴才正',vid:null},
+{t:'入位③前脚跨步定重心',tag:'入位',wrong:'俯身后前倾或后仰 出杆上下飘。',right:{杆法:'无',力度:'无',瞄准:'前脚向进球线方向跨出',身体:'重心在两脚间偏前 背平'},tips:['跨步幅度固定 形成一步到位肌肉记忆','背不平等于视线变瞄准点飘'],check:['重心居中','背平'],koujue:'跨步进位 重心居中',vid:null},
+{t:'入位④俯身架桥贴杆',tag:'入位',wrong:'架桥不稳 杆在手里晃 动作每杆不一样。',right:{杆法:'无',力度:'无',瞄准:'下巴球杆母球三点一线 架桥手稳固',身体:'手腕不动靠手臂带动'},tips:['架杆锁定一个固定动作不复用多种 是架杆稳定唯一途径','下巴贴杆是天然瞄准校验器 离杆必歪'],check:['下巴贴杆','架桥锁死'],koujue:'下巴对杆 杆对球',vid:2},
+{t:'入位⑤运杆锁点出杆',tag:'入位',wrong:'最后一下突然变线 频繁改瞄准位置。',right:{杆法:'无',力度:'运杆3到5次 最后一次停在母球后确认瞄准点再送',瞄准:'锁点后才出杆 没锁点不出杆',身体:'运杆时只有小臂动'},tips:['定死规矩 运杆3次找感觉第4次必出杆 杜绝无限运杆','运杆越多越犹豫 犹豫就是没锁点','没锁点不出杆 值得贴球台边'],check:['运杆几次','锁点','腕没动'],koujue:'没锁点 不出杆',vid:5}
+],
+equip:[
+{t:'斯诺克架杆机械桥锁定动作',tag:'架杆',wrong:'用架杆就失误 出杆变形 每杆姿势不同。',right:{杆法:'架杆头贴紧台面 杆槽对准进球线',力度:'轻至中 先求稳',瞄准:'固定一个架杆姿势不复用多种',身体:'手臂带动手腕不动'},tips:['架杆稳定等于动作锁定加腕不动加拉满加瞄准点固定 四条缺一不可','练架杆练一种 练到比手架放心'],check:['架杆头贴死台面','腕没动'],koujue:'架杆只练一套 练到放心',vid:2},
+{t:'手架高架低架库边架',tag:'架杆',wrong:'母球贴库或越障碍时手架不稳 勉强出杆。',right:{杆法:'高架够远球 低架贴库',力度:'相应减力',瞄准:'手架决定出杆平面 先稳架再瞄',身体:'手指张开压死台呢'},tips:['顺序不能反 先稳架再瞄再打 架不稳后面全废','手架离母球太远等于杆头晃 标准约一拳半'],check:['手架稳','距离合适'],koujue:'架不稳 不打',vid:null},
+{t:'巧粉与皮头维护',tag:'架杆',wrong:'频繁呲杆 加塞失效。',right:{杆法:'皮头磨成弧面 每次击球前涂粉',力度:'无',瞄准:'无',身体:'无'},tips:['涂粉标准化 转杆涂三下吹一口','皮头磨弧面 平顶皮头爱呲','听到呲声停 查粉查点查力'],check:['粉匀','弧面在'],koujue:'粉匀点准 呲杆自消',vid:null}
+],
+clear:[
+{t:'倒推法 从最后一颗开始',tag:'清台',wrong:'打着打着没球可打 走到哪算哪。',right:{杆法:'无',力度:'无',瞄准:'从黑8倒推回第一颗 反推每杆母球落点',身体:'无'},tips:['上台第一件事看最后一颗在哪','用手指在台面上虚点每杆落点形成物理记忆','不会倒推清台率上限就是5颗'],check:['指出最后一颗了吗'],koujue:'从终点往回走',vid:null},
+{t:'先难后易还是先易后难',tag:'清台',wrong:'留难球到最后必死。',right:{杆法:'无',力度:'无',瞄准:'早期处理难球 那时母球选择最多',身体:'无'},tips:['难球趁早打 开局母球选择多压力小','把最难那颗标出来前三杆解决'],check:['最难的解决了吗'],koujue:'难球趁早打',vid:null},
+{t:'K球与球堆规划',tag:'清台',wrong:'球堆留到后期无解。',right:{杆法:'顺带K球',力度:'中至重',瞄准:'借位K球',身体:'无'},tips:['开杆前标出球堆位置和适合的K球','K不到就放弃 不为K球破坏走位'],check:['球堆位置标了吗'],koujue:'K球要顺便',vid:null},
+{t:'黑8的进路与保险',tag:'清台',wrong:'清到黑8才发现没路。',right:{杆法:'无',力度:'无',瞄准:'清台前想好黑8打哪袋母球怎么走',身体:'无'},tips:['清台前答三问 黑8打哪袋 中间会被挡吗 失误对手有机的吗','提前想好终点的人少翻车'],check:['黑8的袋定了'],koujue:'不清完 不想赢',vid:null},
+{t:'中断后的重启思路',tag:'清台',wrong:'一杆断了 上台接着上一杆想法打。',right:{杆法:'无',力度:'无',瞄准:'重新倒推 不接着上一杆想法打',身体:'无'},tips:['中断等于重置 深呼吸重新从最后一颗倒推','别在对手打完瞬间凭直觉出杆 给自己5秒'],check:['重新倒推了吗'],koujue:'断就重算',vid:null}
+],
+safe:[
+{t:'贴库安全球',tag:'防守',wrong:'无法进攻时乱打一颗 留给对手机会。',right:{杆法:'低杆反塞把母球也贴库',力度:'轻',瞄准:'让目标球或母球贴库',身体:'无'},tips:['防守目标是我不好你也别好 不是随便打一杆','贴库安全是最便宜的安全球 练熟收益最高'],check:['母球贴库了吗'],koujue:'我不好 你也别好',vid:null},
+{t:'藏球斯诺克',tag:'防守',wrong:'藏曲线不藏直线 对手一绕就开。',right:{杆法:'中杆轻推 母球藏在球堆后',力度:'轻',瞄准:'以挡住直线为准',身体:'无'},tips:['只藏直线不藏曲线 高手都绕曲线','藏完回头看 我是对手这球好解吗'],check:['直线挡死了吗'],koujue:'藏直线 不藏曲线',vid:null},
+{t:'交换球权的安全',tag:'防守',wrong:'防守后对手仍有简单球。',right:{杆法:'无',力度:'无',瞄准:'让对手能碰到但打不进',身体:'无'},tips:['给他碰不给他进 是安全及格线','防守质量用对手上手率衡量 不用我打进没'],check:['对手只能碰不能进吗'],koujue:'给他碰 不给他进',vid:null},
+{t:'防守转攻的时机',tag:'防守',wrong:'一味防守丢主动 半机会强攻送分。',right:{杆法:'无',力度:'无',瞄准:'半机会时优先控母球而非强攻',身体:'无'},tips:['半机会当防守打 是业余和高手分水岭','标准 进了之后母球有下一颗吗 没有就当防守'],check:['进了后有下一颗吗'],koujue:'半机会当防守打',vid:null}
+],
+hard:[
+{t:'长台 大于3颗球距',tag:'难度',wrong:'命中率低 只盯袋口 加塞放大偏差。',right:{杆法:'中杆不加塞',力度:'七分力 出杆直',瞄准:'盯母球瞄准点而非袋口 让点补偿',身体:'头不动到母球停'},tips:['长台三禁 禁塞禁重禁抬头早','距离越长让点越多 先补后调'],check:['中杆 七分力 头晚抬'],koujue:'长台盯点不看袋',vid:4},
+{t:'薄球 小于30度接触',tag:'难度',wrong:'打厚或滑袋。',right:{杆法:'中杆偏下',力度:'轻至中',瞄准:'假想球边缘擦过 宁薄勿厚',身体:'无'},tips:['薄球宁薄勿厚 薄了还能靠库 厚了送分','想象母球从目标球旁边擦过去不是撞上去'],check:['厚度已减'],koujue:'薄球宁薄不厚',vid:null},
+{t:'厚球 几乎正面',tag:'难度',wrong:'母球目标球几乎重叠 分离角失控。',right:{杆法:'高杆跟进或低杆缩回 明确分离角',力度:'中',瞄准:'中心对中心',身体:'无'},tips:['厚球关键不是打进而是母球去哪 提前定分离角','厚球定角不定点 先想清角再出杆'],check:['分离角定了'],koujue:'厚球定角不定点',vid:null},
+{t:'贴库球大角度',tag:'难度',wrong:'见球形诊断大角度贴库。',right:{杆法:'反塞加低杆',力度:'中',瞄准:'让点半颗球',身体:'无'},tips:['归类到贴库模块 统一用反塞加让点模板'],check:['让点补了吗'],koujue:'大角用反塞 让点半颗球',vid:null},
+{t:'翻袋',tag:'难度',wrong:'翻袋不准。',right:{杆法:'中杆',力度:'中力 保证吃库后能量足够',瞄准:'镜像对称点法',身体:'无'},tips:['用手在库边比对称点 眼看那个点打 别凭感觉','翻袋先保吃到库 再求进得准'],check:['对称点比出来了吗'],koujue:'翻袋找对称',vid:null},
+{t:'跳球过障碍',tag:'难度',wrong:'击球点不够低 杆尾抬不够 球跳不起或呲杆。',right:{杆法:'低杆点击母球下部 杆尾抬高',力度:'短促',瞄准:'击球点越低越跳',身体:'手腕固定不甩'},tips:['跳球是点出来不是挑出来 动作短促干脆','非必要不跳球 优先解库或安全'],check:['点够低','动作短促'],koujue:'点低杆抬 球自起',vid:null}
+]
+};
+
+const SYM=[
+{sym:'五分点总是差一点进不去',mod:'入位与站位',cause:'脚尖未朝进球线 身体扭转致视线与站位错位',fix:'脚尖朝进球线 反复练站位形成肌肉记忆',verify:'同一球连进10个不偏'},
+{sym:'出杆最后一下变线',mod:'入位与站位',cause:'没锁点就出杆或手腕参与',fix:'运杆3到5次停住确认瞄准点再送 腕不动靠手臂',verify:'空杆练杆头指同一点'},
+{sym:'加塞后母球横移比预期多',mod:'加塞',cause:'让点未补偿或击球点过大',fix:'打左让右打右让左 塞量减一档',verify:'同点打10次记偏差方向'},
+{sym:'加塞呲杆',mod:'加塞',cause:'皮头未涂粉或超极限击球点',fix:'涂粉减塞量降力度',verify:'连续10次无异响'},
+{sym:'轻推进发力不进',mod:'发力',cause:'发力进球点改变仍用轻推瞄准位',fix:'发力先判轨迹再调瞄准点 轻推往薄推',verify:'同球轻推发力各10次对比'},
+{sym:'长台一发力求就偏',mod:'长台',cause:'只盯袋口旋转累积偏差',fix:'看整体路径先定方向再微调 中杆偏下',verify:'长台10颗进7'},
+{sym:'母球不是多就是少',mod:'走位',cause:'没有力度分级基准',fix:'建三分五分七分力距离表',verify:'落点误差不超半颗球'},
+{sym:'打着打着没球可打',mod:'清台',cause:'未倒推球堆未K',fix:'开杆前倒推全程 顺带K球',verify:'清台率提升'},
+{sym:'防守后对手仍有简单球',mod:'防守',cause:'只求碰到不求控位',fix:'目标设为能碰不能进',verify:'对手上手率下降'}
+];
+
+const VIDS=[
+{id:1,title:'调整脚尖 解决五分点打不进的问题',core:'视线与站位不匹配 身体扭转致瞄准误差',kw:'台球 站位 脚尖 进球线 五分点'},
+{id:2,title:'斯诺克架杆使用教学',core:'锁定固定动作 手腕不动 球杆拉满 瞄准点固定',kw:'斯诺克架杆 机械桥 使用教学'},
+{id:3,title:'发力与不发力的进球点差异',core:'发力进球点会变 不能沿用轻推瞄准位',kw:'台球 发力 进球点 差异 轻推'},
+{id:4,title:'长台发力的进球点判断',core:'不盯袋口 关注整体路径 先定方向再微调',kw:'台球 长台 发力 进球点 判断'},
+{id:5,title:'出杆动作完整性训练',core:'拉满出杆连贯 中途不停顿不减速',kw:'台球 出杆 动作 完整性 训练 拉满'}
+];
+
+let active='home';
+const navEl=document.getElementById('nav'),ct=document.getElementById('content'),sq=document.getElementById('search');
+
+function buildNav(q){
+ const f=(q||'').toLowerCase();let h='';
+ h+='<div class="nav-item'+(active==='home'?' active':'')+'" onclick="go(\'home\')">首页·出杆前总纲</div>';
+ h+='<div class="nav-item'+(active==='right'?' active':'')+'" onclick="go(\'right\')">正确做法速览</div>';
+ h+='<div class="nav-item'+(active==='videos'?' active':'')+'" onclick="go(\'videos\')">教学视频要点库</div>';
+ h+='<div class="nav-item'+(active==='symp'?' active':'')+'" onclick="go(\'symp\')">症状索引</div>';
+ const groups={};TAGS.forEach(t=>{(groups[t.g]=groups[t.g]||[]).push(t)});
+ for(const g in groups){
+  const items=groups[g].filter(t=>!f||matchTag(t,f));
+  if(!items.length)continue;
+  h+='<div class="nav-group">'+g+'</div>';
+  items.forEach(t=>{h+='<div class="nav-item'+(active===t.id?' active':'')+'" onclick="go(\''+t.id+'\')">'+t.n+'<span class="cnt">'+S[t.id].length+'</span></div>'});
+ }
+ navEl.innerHTML=h;
+}
+function matchTag(t,f){
+ if(t.n.toLowerCase().indexOf(f)>-1)return true;
+ return S[t.id].some(s=>(s.t+s.tag+s.koujue+s.wrong).toLowerCase().indexOf(f)>-1);
+}
+function go(id){active=id;document.getElementById('sidebar').classList.remove('open');buildNav(sq.value);render(id);document.getElementById('main').scrollTop=0;}
+
+function render(id){
+ if(id==='home')return rHome();
+ if(id==='right')return rRight();
+ if(id==='videos')return rVids();
+ if(id==='symp')return rSymp();
+ rTag(id);
+}
+
+function rHome(){
+ const steps=['读台定球','定落点倒推','分离角塞量决策','入位五步','出杆前3秒自检'];
+ const sub=['看清哪颗能打哪个袋','先想母球停哪再想怎么打','中高还是低顺反还是无塞','踩线跨步俯身架桥贴杆','锁点呼吸送杆随挥'];
+ let flow='';for(let i=0;i<5;i++){flow+='<div class="fstep"><span class="n">'+(i+1)+'</span><h4>'+steps[i]+'</h4><p>'+sub[i]+'</p></div>';}
+ ct.innerHTML='<div class="bread">首页</div><h2 class="title">出杆前固化流程·总纲</h2>'
+ +'<p class="desc">每一杆之前按顺序走完这五步 走完再出杆 没走完不出杆。</p><div class="flow">'+flow+'</div>'
+ +'<div class="mantra"><div class="mitem"><h4>顺薄反厚 高顺低反</h4><p>顺塞吃库角变大 反塞变小 高顺最大 低反最小</p></div>'
+ +'<div class="mitem"><h4>打左让右 打右让左</h4><p>加塞必有让点 塞越大距离越长让点越多</p></div>'
+ +'<div class="mitem"><h4>先定落点 再选杆法</h4><p>永远先想母球停哪 再决定杆法和力度</p></div></div>'
+ +'<div class="dia-row"><div class="dia">'+DIA.stroke+'</div><div class="dia">'+DIA.sep+'</div></div>'
+ +'<p class="desc" style="margin-top:14px">左侧选正确做法速览看全部模块总表 选症状索引按现象查原因</p>';
+}
+
+function rRight(){
+ let h='<div class="bread">正确做法速览</div><h2 class="title">正确做法速览 全模块总表</h2><p class="desc">把十个模块的正确做法集中在此 练球前花3分钟过一遍 点模块名跳转详细场景</p>';
+ TAGS.forEach(t=>{
+  h+='<h3 style="color:var(--gold);margin:18px 0 8px;font-size:16px;cursor:pointer" onclick="go(\''+t.id+'\')">'+t.n+' 跳转</h3>';
+  h+='<table class="rtable"><thead><tr><th style="width:28%">场景</th><th style="width:36%">正确做法</th><th style="width:36%">实用技巧</th></tr></thead><tbody>';
+  S[t.id].forEach(s=>{
+   const right=Object.entries(s.right).map(kv=>kv[1]&&kv[1]!=='无'?'<b>'+kv[0]+' '+kv[1]+'</b>':'').filter(Boolean).join('　');
+   h+='<tr><td>'+s.t+'</td><td class="badge-ok">'+right+'</td><td>'+s.tips.slice(0,2).join('；')+'</td></tr>';
+  });
+  h+='</tbody></table>';
+ });
+ ct.innerHTML=h;
+}
+
+function rTag(id){
+ const tag=TAGS.find(t=>t.id===id);if(!tag)return;
+ const list=S[id],dk={shape:'sep',cueball:'bank',method:'cue',power:'stroke',walk:'sep',pos:'stroke',equip:'aim',clear:'run',safe:'bank',hard:'aim'}[id]||'aim';
+ ct.innerHTML='<div class="bread"><span>'+tag.g+'</span> / '+tag.n+'</div><h2 class="title">'+tag.n+'</h2><p class="desc">共 '+list.length+' 个子场景 每张卡片按 常见错误到正确做法到实用技巧 排列 点击标题展开</p><div class="dia-row"><div class="dia">'+DIA[dk]+'</div></div>'+list.map(card).join('');
+ const first=document.querySelector('.scene');if(first)first.classList.add('open');
+}
+
+function card(s){
+ const v=s.vid?VIDS.find(x=>x.id===s.vid):null;
+ const kw='中式八球 '+s.tag+' '+s.t;
+ const rights=Object.entries(s.right).map(kv=>kv[1]&&kv[1]!=='无'?'<div class="g-item"><div class="g-label">'+kv[0]+'</div><div class="g-val">'+kv[1]+'</div></div>':'').join('');
+ const keystr=(s.t+s.tag+s.wrong+s.koujue+s.tips.join(' ')).toLowerCase();
+ return '<div class="scene" data-k="'+keystr+'"><div class="scene-head" onclick="this.parentElement.classList.toggle(\'open\')"><h3>'+s.t+' <span class="tag">'+s.tag+'</span></h3><span class="arrow">&#9660;</span></div><div class="scene-body">'
+ +'<div class="block block-wrong"><div class="block-title">常见错误</div><div class="g-val">'+s.wrong+'</div></div>'
+ +'<div class="block block-right"><div class="block-title">正确做法</div><div class="grid">'+rights+'</div></div>'
+ +'<div class="block block-tip"><div class="block-title">实用技巧</div><ul class="tips-list">'+s.tips.map(t=>'<li>'+t+'</li>').join('')+(v?'<li style="color:var(--gold);margin-top:4px">对应教学 '+v.title+'</li>':'')+'</ul><div class="checklist">'+s.check.map(c=>'<span class="check">已核对 '+c+'</span>').join('')+'</div></div>'
+ +'<div class="koujue">'+s.koujue+'</div>'
+ +'<div class="vrow"><a class="vbtn dy" href="https://www.douyin.com/search/'+encodeURIComponent(kw)+'" target="_blank">抖音搜</a><a class="vbtn bz" href="https://search.bilibili.com/all?keyword='+encodeURIComponent(kw)+'" target="_blank">B站搜</a></div>'
+ +'<div class="kw">检索词 <code>'+kw+'</code></div></div></div>';
+}
+
+function rVids(){
+ let h='<div class="bread"><span>教学视频要点库</span></div><h2 class="title">教学视频要点库</h2><p class="desc">5条核心教学已拆解进对应场景的实用技巧 此处集中速览 点卡片跳转对应标签</p><div class="vlib">';
+ VIDS.forEach(v=>{
+  const tag=(v.id===1||v.id===2||v.id===5)?'pos':(v.id===3?'power':'hard');
+  const tagname=(v.id===1||v.id===2||v.id===5)?'入位五步':(v.id===3?'发力与让点':'难度球技巧');
+  h+='<div class="vcard" onclick="go(\''+tag+'\')"><h3>视频'+v.id+' '+v.title+'</h3><div class="core">核心 '+v.core+'</div><div class="vrow"><a class="vbtn dy" href="https://www.douyin.com/search/'+encodeURIComponent(v.kw)+'" target="_blank" onclick="event.stopPropagation()">抖音</a><a class="vbtn bz" href="https://search.bilibili.com/all?keyword='+encodeURIComponent(v.kw)+'" target="_blank" onclick="event.stopPropagation()">B站</a></div><div class="goto">已嵌入标签 '+tagname+'</div></div>';
+ });
+ h+='</div>';
+ ct.innerHTML=h;
+}
+
+function rSymp(){
+ let h='<div class="bread"><span>症状索引</span></div><h2 class="title">症状索引 急诊表</h2><p class="desc">先判断是决策错还是执行错 再对症修正</p><table class="stbl"><thead><tr><th>出现现象</th><th>模块</th><th>根本原因</th><th>修正动作</th><th>验证方法</th></tr></thead><tbody>';
+ SYM.forEach(s=>{h+='<tr><td>'+s.sym+'</td><td>'+s.mod+'</td><td>'+s.cause+'</td><td class="badge-ok">'+s.fix+'</td><td>'+s.verify+'</td></tr>';});
+ h+='</tbody></table><div class="mantra"><div class="mitem"><h4>决策错</h4><p>瞄错分离角算错顺序选错 查清台倒推分离角难度球</p></div><div class="mitem"><h4>执行错</h4><p>入位歪出杆飘让点没补 查入位五步加塞让点发力</p></div></div>';
+ ct.innerHTML=h;
+}
+
+function hl(){const q=sq.value.toLowerCase();document.querySelectorAll('.scene,.vcard').forEach(el=>{el.classList.toggle('highlight',!!q&&(el.dataset.k||'').toLowerCase().indexOf(q)>-1)})}
+sq.addEventListener('input',()=>{buildNav(sq.value);if(active!=='home')render(active);hl()});
+sq.addEventListener('keydown',e=>{if(e.key==='Enter')hl()});
+
+buildNav('');render('home');
+</script>
+</body>
+</html>
